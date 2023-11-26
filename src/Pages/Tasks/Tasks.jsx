@@ -38,7 +38,10 @@ const Tasks = () => {
 
     return (
         <div className={styles.MainContainer}>
-            <div className={styles.filter}>
+{/* Sorry Didn't get time to work on filter */}
+
+
+            {/* <div className={styles.filter}>
                 <Select
                     showSearch
                     placeholder="Select priority"
@@ -80,7 +83,7 @@ const Tasks = () => {
                 <Input placeholder='Search by title' />
 
 
-            </div>
+            </div> */}
 
             <div className={styles.table}>
                 <div className={styles.tableHead}>

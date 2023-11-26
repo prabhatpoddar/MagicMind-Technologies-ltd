@@ -5,20 +5,24 @@ import { Chart } from "react-google-charts";
 
 import { MdOutlineRunningWithErrors } from "react-icons/md";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
-
-
-const data = [
-    ["Year", "Attendance"],
-    ["Jan", 0],
-    ["Feb", 0],
-    ["Mar", 0],
-    ["May", 0],
-    ["June", 0],
-    ["July", 0],
-    ["Aug", 0],
-];
+import { userRequest } from '../../requestMethod';
 const Dashboard = () => {
-    const [chartData, setChartData] = useState(data)
+    const [dashboardData, setDashboardData] = useState({})
+    const [recent, setRecent] = useState("")
+    useEffect(() => {
+        userRequest.get(`api/user/getRecentTasks`).then((res) => {
+            setRecent(res.data.data)
+        }).catch((err) => {
+            console.log('err:', err)
+
+        })
+        userRequest.get(`api/user/getDashboard`).then((res) => {
+            setDashboardData(res.data)
+        }).catch((err) => {
+            console.log('err:', err)
+
+        })
+    }, [])
 
     const options1 = {
         title: 'Category',
@@ -43,36 +47,30 @@ const Dashboard = () => {
             position: 'center',
             textStyle: {
                 fontSize: 8,
-
-
-                // Add any other styles you want to apply to the legend text
             },
         },
 
 
     };
-    const data2 = [
-        ["City", ""],
-        ["City1", 11],
-        ["City2", 15],
-        ["City3", 51],
-        ["City4", 91],
-        ["City5", 20],
-        ["City6", 30],
 
-    ];
-    const data3 = [
-        ["City", ""],
-        ["Bar (80%)", 11],
-        ["Restaurants (5%)", 15],
-        ["Coffeeshop (15%)", 51],
-    ];
+
 
     const options = {
         legend: {
             position: 'none',
         },
     };
+    function calculateHoursLeft(targetDate) {
+        const targetTime = new Date(targetDate).getTime();
+        const currentTime = new Date().getTime();
+        const timeDiff = targetTime - currentTime;
+
+        
+
+        const hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
+
+        return ` ${hoursLeft}`;
+    }
     return (
         <div className={styles.MainContainer}>
 
@@ -86,13 +84,13 @@ const Dashboard = () => {
                 <div className={styles.card}>
                     <IoCheckmarkDoneCircle fontSize={40} color='green' />
                     <p>Total Tasks</p>
-                    <h1>20</h1>
+                    <h1>{dashboardData.totalTask}</h1>
                 </div>
                 <div className={styles.card}>
 
                     <MdOutlineRunningWithErrors fontSize={40} color='orange' />
                     <p>Pending Tasks</p>
-                    <h1>10</h1>
+                    <h1>{dashboardData.pendingTask}</h1>
                 </div>
                 <div className={styles.pieDiv}>
                     <div className={styles.title} >
@@ -100,7 +98,7 @@ const Dashboard = () => {
                     </div>
                     <Chart
                         chartType="PieChart"
-                        data={data2}
+                        data={dashboardData?.targetData}
                         options={options3}
                     />
                 </div>
@@ -110,7 +108,7 @@ const Dashboard = () => {
                     </div>
                     <Chart
                         chartType="PieChart"
-                        data={data3}
+                        data={dashboardData?.priorityData}
                         options={options1}
 
 
@@ -128,7 +126,7 @@ const Dashboard = () => {
                         chartType="LineChart"
                         width="100%"
                         height="200px"
-                        data={chartData}
+                        data={dashboardData.monthlyData}
                         options={options}
                     />
 
@@ -142,26 +140,17 @@ const Dashboard = () => {
                                 <th>Title</th>
                                 <th>Time Left</th>
                             </tr>
-                            <tr>
-                                <td>Partner 1</td>
-                                <td>12</td>
-                            </tr>
-                            <tr>
-                                <td>Partner 1</td>
-                                <td>12</td>
-                            </tr>
-                            <tr>
-                                <td>Partner 1</td>
-                                <td>12</td>
-                            </tr>
-                            <tr>
-                                <td>Partner 1</td>
-                                <td>12</td>
-                            </tr>
-                            <tr>
-                                <td>Partner 1</td>
-                                <td>12</td>
-                            </tr>
+                            {
+                                recent.length > 0 && recent.map((el) => {
+                                    return (
+                                        <tr key={el._id}>
+                                            <td>{el.title}</td>
+                                            <td>{calculateHoursLeft(el.endDate)}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+
 
 
                         </table>
