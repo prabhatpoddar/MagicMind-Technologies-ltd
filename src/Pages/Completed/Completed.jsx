@@ -12,13 +12,13 @@ const Completed = () => {
     const tasks = useSelector(store => store.task.Task.data) || []
 
     useEffect(() => {
-        dispatch(fetchTaskData())
+        dispatch(fetchTaskData(true))
 
     }, [dispatch])
     const updateTask = (id, data) => {
         dispatch(updateTaskData(id, data)).then((res) => {
 
-            dispatch(fetchTaskData()).then((res2) => {
+            dispatch(fetchTaskData(true)).then((res2) => {
                 message.success("Update Successfully")
             }).catch((err) => {
                 message.error("Something went wrong")

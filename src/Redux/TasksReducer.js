@@ -65,10 +65,12 @@ export const {
 
 export default userSlice.reducer;
 
-export const fetchTaskData = () => async (dispatch) => {
+export const fetchTaskData = (completed) => async (dispatch) => {
   try {
     dispatch(getTaskDataRequest());
-    const response = await userRequest.get(`/api/task/getAll`);
+    const response = completed
+      ? await userRequest.get(`/api/task/getAll?completed=${completed}`)
+      : await userRequest.get(`/api/task/getAll`);
     dispatch(getTaskDataSuccess(response.data));
     return Promise.resolve(response.data);
   } catch (error) {

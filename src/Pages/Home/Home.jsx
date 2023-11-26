@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import { MdDashboard } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
@@ -16,6 +16,7 @@ import { Link, useLocation, } from "react-router-dom";
 import Router from "../../Components/Router";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/AuthReducer";
+import { userRequest } from "../../requestMethod";
 
 
 
@@ -23,6 +24,15 @@ import { logout } from "../../Redux/AuthReducer";
 const Home = () => {
     const location = useLocation().pathname;
     const dispatch = useDispatch()
+    const [user, setUser] = useState("")
+    useEffect(() => {
+        userRequest.get('/api/user/getUser').then((res) => {
+            setUser(res.data.data)
+        }).catch((err) => {
+            console.log('err:', err)
+
+        })
+    }, [])
     const Logout = () => {
         dispatch(logout())
         window.location.reload()
@@ -30,11 +40,11 @@ const Home = () => {
     const items = [
         {
             label: <div className={styles.profileDetails}>
-                <Avatar name='P' bg="blue.300" size="md" />
+                <Avatar name={user.email} bg="blue.300" size="md"  />
                 <div className={styles.profilePic}>
 
-                    <p style={{ fontWeight: "700" }}>Prabhat Poddar</p>
-                    <p style={{ fontWeight: "500" }}>pk041222@gmail.com</p>
+                    <p style={{ fontWeight: "700" }}>{user.name}</p>
+                    <p style={{ fontWeight: "500" }}>{user.email}</p>
                 </div>
             </div>,
             key: '0',
