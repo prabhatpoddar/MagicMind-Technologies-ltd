@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import styles from "./styles.module.css"
-import { MdDelete } from 'react-icons/md';
 import { FiEdit } from "react-icons/fi";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTaskData, updateTaskData } from '../../Redux/TasksReducer';

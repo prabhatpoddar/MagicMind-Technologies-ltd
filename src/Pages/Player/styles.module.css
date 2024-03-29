@@ -1,0 +1,106 @@
+.MainContainer {
+  display: flex;
+  flex-direction: column;
+  background: url(../../assets/Home/Background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: calc(100vh - 60px);
+}
+
+.topContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 30px;
+  margin-top: 10px;
+}
+.topContainer > p {
+  color: #fff;
+}
+.topBtns {
+  background-color: #1482ef;
+  color: #fff;
+  padding:5px  10px;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.list {
+  background-color: #e3f0fd;
+  border-radius: 13px;
+}
+.listDiv {
+  display: flex;
+  margin: 0px 30px 0px 30px;
+  background-color: #fff;
+  border-radius: 13px;
+}
+.tabList {
+  background-color: #fff;
+  width: 280px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  border-radius: 10px;
+  padding: 2px 15px;
+  font-weight: bold;
+}
+.tabPanel {
+  font-weight: bold;
+  color: black;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+.btnDiv {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: 100px;
+}
+.btnDiv2 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 200px;
+}
+.btnDiv > Button:nth-child(1) {
+  background-color: #fff;
+  color: black;
+  width: 120px;
+}
+.btnDiv > Button:nth-child(2) {
+  background-color: #1482ef;
+  color: #fff;
+  width: 120px;
+
+  border: none;
+}
+.btnDiv2 > Button:nth-child(1) {
+  background-color: #fff;
+  color: black;
+}
+.btnDiv2 > Button:nth-child(2) {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+.topSearch{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-right: 32px;
+  gap: 10px;
+
+}
+

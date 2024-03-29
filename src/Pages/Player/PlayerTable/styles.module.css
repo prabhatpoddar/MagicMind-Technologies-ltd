@@ -1,0 +1,64 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 58vh;
+  overflow: scroll;
+}
+.tableHead >span,.tableData>span{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.table::-webkit-scrollbar {
+  display: none;
+} 
+.tableHead,
+.tableData {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+}
+.tableHead {
+  color: #989898;
+  font-size: 14px;
+}
+.tableData {
+  background-color: #deefff;
+  font-weight: bold;
+  border: 1px solid #A2A2A2;
+}
+
+
+.avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+
+
+}
+#avatar2{
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.nameP{
+  width: 130px;
+  text-align: left;
+}
+.editIcon{
+  color: #0373EA;
+  font-size: 20px;
+}
+.deleteIcon2 {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}

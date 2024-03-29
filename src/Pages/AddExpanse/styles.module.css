@@ -1,0 +1,78 @@
+.MainContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  gap: 30px;
+  padding: 30px;
+
+  height: calc(100vh - 60px);
+  overflow: scroll; /* Prevent content overflow */
+}
+.MainContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 80%;
+  margin: 1% auto;
+  background-color: #83c5be;
+  border-radius: 8px;
+}
+.heading h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 36px;
+}
+.formDiv{
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  gap: 20px;
+  width: 80%;
+  margin: auto;
+}
+.formDiv>div{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.formDiv>div>span{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bottomDiv{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+  margin:  auto;
+}
+.bottomDiv span{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.error{
+  font-size: 10px;
+  color: red;
+}
+@media only screen and (max-width: 767px) {
+  .formDiv {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .formDiv>Select,.formDiv>Input{
+    height: 80px;
+  }
+
+  .bottomDiv {
+    width: 100%;
+  }
+  .heading h1 {
+    font-size: 26px;
+  }
+}

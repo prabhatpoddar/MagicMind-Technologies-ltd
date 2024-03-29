@@ -90,6 +90,7 @@ const Addtasks = () => {
                     <span>
                         <p>Task Title *</p>
                         <Input
+                        size="large"
                             placeholder="Task Title"
                             value={taskData.title}
                             onChange={(e) => handleInputChange('title', e.target.value)}
@@ -99,6 +100,7 @@ const Addtasks = () => {
                     <span>
                         <p>End Date *</p>
                         <Input
+                        size="large"
                             placeholder="End Date"
                             type="date"
                             value={taskData.endDate}
@@ -109,9 +111,10 @@ const Addtasks = () => {
                     <span>
                         <p>Priority Level *</p>
                         <Select
+                        size="large"
                             showSearch
                             placeholder="Select priority"
-                            value={taskData.priority}
+                            value={taskData.priority?taskData.priority:[]}
                             onChange={(value) => handleInputChange('priority', value)}
                             options={[
                                 { value: 'High', label: 'High' },
@@ -126,6 +129,7 @@ const Addtasks = () => {
                     <span>
                         <p>Start Date *</p>
                         <Input
+                        size="large"
                             placeholder="Start Date"
                             type="date"
                             value={taskData.startDate}
@@ -136,9 +140,10 @@ const Addtasks = () => {
                     <span>
                         <p>Category *</p>
                         <Select
+                        size="large"
                             showSearch
                             placeholder="Select category"
-                            value={taskData.category}
+                            value={taskData.category?taskData.category:[]}
                             onChange={(value) => handleInputChange('category', value)}
                             options={[
                                 { value: 'Meetings', label: 'Meetings' },
@@ -153,9 +158,10 @@ const Addtasks = () => {
                     <span>
                         <p>Target *</p>
                         <Select
+                        size="large"
                             showSearch
                             placeholder="Select target"
-                            value={taskData.target}
+                            value={taskData.target?taskData.target:[]}
                             onChange={(value) => handleInputChange('target', value)}
                             options={[
                                 { value: 'Day', label: 'Day' },
@@ -174,7 +180,7 @@ const Addtasks = () => {
                 <span>
                     <p>Note</p>
                     <TextArea
-                        rows={6}
+                        rows={5}
                         placeholder="Write Important Note"
                         maxLength={300}
                         value={taskData.note}

@@ -27,36 +27,48 @@
   font-weight: 700;
   font-size: 36px;
 }
-.formDiv{
+.formDiv {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 80%;
   margin: auto;
 }
-.formDiv>div{
+.formDiv > div {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.formDiv>div>span{
+.formDiv > div > span {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.bottomDiv{
+.bottomDiv {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 80%;
-  margin:  auto;
+  margin: auto;
 }
-.bottomDiv span{
+.bottomDiv span {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.error{
+.error {
   font-size: 10px;
   color: red;
+}
+@media only screen and (max-width: 767px) {
+  .formDiv {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .bottomDiv {
+    width: 100%;
+  }
+  .heading h1 {
+    font-size: 26px;
+  }
 }

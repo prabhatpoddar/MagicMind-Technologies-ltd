@@ -1,25 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import { MdDashboard } from "react-icons/md";
-import { FaTasks } from "react-icons/fa";
-
-import { IoMdDoneAll } from "react-icons/io";
-import { MdAddAlarm } from "react-icons/md";
+import { BsCurrencyDollar } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiLogOut } from 'react-icons/fi';
 import { Dropdown } from 'antd';
 import { Avatar } from '@chakra-ui/react';
-
-
-
 import { Link, useLocation, } from "react-router-dom";
 import Router from "../../Components/Router";
 import { useDispatch } from "react-redux";
 import { logout } from "../../Redux/AuthReducer";
 import { userRequest } from "../../requestMethod";
-
-
-
+import DrawerList from "./Drawer";
 
 const Home = () => {
     const location = useLocation().pathname;
@@ -65,7 +57,7 @@ const Home = () => {
     return (
         <>
             <div className={styles.upperDiv}>
-                <h1>Todo</h1>
+                <h1>Expanse</h1>
                 <span className={styles.headPhones}>
                     <Dropdown
                         menu={{
@@ -75,6 +67,9 @@ const Home = () => {
                         <CgProfile />
                     </Dropdown>
                 </span>
+                <div className={styles.drawer}>
+        <DrawerList user={user}/>
+      </div>
 
             </div>
             <div className={styles.mainContainer}>
@@ -89,23 +84,28 @@ const Home = () => {
                             </div>
                         </Link>
 
-                        <Link to="/tasks">
+                        {/* <Link to="/tasks">
                             <div id={location === "/tasks" || location.startsWith("/editTasks/") ? styles.active : null}>
                                 <FaTasks className={styles.sideIcons} /> All Tasks
                             </div>
-                        </Link>
+                        </Link> */}
 
-                        <Link to="/completed">
-                            <div id={location === "/completed" ? styles.active : null}>
-                                <IoMdDoneAll className={styles.sideIcons} /> Completed Tasks
+                        <Link to="/addExpanse">
+                            <div id={location === "/addExpanse" ? styles.active : null}>
+                                <BsCurrencyDollar className={styles.sideIcons} /> Add Expanse
+                            </div>
+                        </Link> 
+                        <Link to="/expense">
+                            <div id={location === "/expense" ? styles.active : null}>
+                                <BsCurrencyDollar className={styles.sideIcons} /> Expanse
                             </div>
                         </Link>
-
+{/* 
                         <Link to="/addTasks">
                             <div id={location === "/addTasks" ? styles.active : null}>
-                                <MdAddAlarm className={styles.sideIcons} /> Add A Task
+                                <MdAddAlarm className={styles.sideIcons} /> Add Task
                             </div>
-                        </Link>
+                        </Link> */}
 
                     </div>
 

@@ -6,7 +6,6 @@
   background-color: var(--primary-color);
 }
 
-
 .upperDiv {
   display: flex;
   justify-content: space-between;
@@ -21,7 +20,7 @@
   font-size: 30px;
   font-weight: 700;
 }
-.headPhones {
+.headPhones ,.headPhones2{
   color: #0373ea;
   font-size: 35px;
 
@@ -29,7 +28,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 .sideContainer {
   height: 100%;
@@ -51,10 +49,7 @@
   flex-direction: column;
   gap: 15px;
   color: var(--primary-btn-color);
-
 }
-
-
 
 .listContainer::-webkit-scrollbar {
   display: none;
@@ -83,9 +78,6 @@
   text-align: left;
 }
 
-
-
-
 .icons {
   background-color: var(--primary-color);
   border-radius: 50%;
@@ -93,17 +85,66 @@
   padding: 3%;
 }
 
-.logout{
+.logout {
   display: flex;
   align-items: center;
   font-size: 20px;
   gap: 20px;
- 
-
 }
 #active {
-  background-color: #0373EA;
+  background-color: #0373ea;
   color: #fff;
   border-radius: 13px;
 }
+.list {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.list2 {
+  display: flex;
+  flex-direction: column;
 
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 20px;
+}
+.list > span,
+.list2 > span {
+  margin: 10px 30px;
+  font-weight: 500;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.list > span:hover,
+.list2 > span:hover {
+  color: #153a68;
+}
+#active2 {
+  /* border-bottom: 3px solid #153a68; */
+  color: #0373ea;
+}
+.drawer {
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0px;
+}
+
+@media only screen and (max-width: 767px) {
+  .headPhones {
+    display: none;
+  }
+  .sideContainer {
+    display: none;
+  }
+  .mainContainer {
+    grid-template-columns: 1fr;
+  }
+  .upperDiv {
+    padding: 0 20px;
+  }
+  .drawer {
+    display: flex;
+  }
+}

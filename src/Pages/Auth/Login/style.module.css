@@ -24,7 +24,6 @@
 }
 .container > div:nth-child(1) > img {
   width: 100%;
-
 }
 .formDiv {
   display: flex;
@@ -70,4 +69,16 @@
   color: var(--primary-btn-color);
   font-size: 18px;
   font-weight: 600;
+}
+@media only screen and (max-width: 767px) {
+  .container > div:nth-child(1) {
+    display: none;
+  }
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .formDiv {
+    padding: 5%;
+  }
 }
