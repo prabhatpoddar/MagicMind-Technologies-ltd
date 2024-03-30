@@ -1,36 +1,40 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { Tabs, TabPanels, TabPanel, Button } from "@chakra-ui/react";
 import PlayerTable from "./PlayerTable/PlayerTable";
-// import TeamTable from './TeamTable/TeamTable';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { Button, Input, Select } from "antd";
+import { Input, Select } from "antd";
 import { FaPlus } from "react-icons/fa6";
 import { fetchExpenseData } from "../../Redux/ExpanseReducer";
 import { publicRequest } from "../../requestMethod";
-const initialState = {
-  type: "",
-  date: "",
-  category: "",
-  subcategory: "",
-  payment: "",
-  amount: 0,
-  note: "",
-};
+import { DatePicker, Space } from "antd";
+const { RangePicker } = DatePicker;
 const Players = () => {
-  const [expenseData, setExpenseData] = useState(initialState);
+  const [selectedDates, setSelectedDates] = useState(null);
+  console.log("selectedDates:", selectedDates);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [expenseData, setExpenseData] = useState({
+    type: "",
+    start: "",
+    end: "",
+    category: "",
+    subcategory: "",
+    payment: "",
+    amount: 0,
+  });
+  console.log("expenseData:", expenseData);
+
   const [filter, setFilter] = useState([]);
   const [category, setCategory] = useState([]);
-  const [search, setSearch] = useState("");
-  const navigate = useNavigate();
+
+  const [page, setPage] = useState(1);
   const [subcategory, setSubCategory] = useState(
     filter[expenseData?.category] || []
   );
-  const [type, setType] = useState("Player");
-  const [page, setPage] = useState(1);
-  const dispatch = useDispatch();
   const handleInputChange = (field, value) => {
     setExpenseData((prevData) => ({
       ...prevData,
@@ -59,16 +63,26 @@ const Players = () => {
 
   useEffect(() => {
     // Fetch data based on type (Player or Team)
-    if (type === "Player") {
-      dispatch(fetchExpenseData(true));
-    }
-  }, [dispatch, type, page, search]);
 
+    dispatch(fetchExpenseData(expenseData));
+  }, [dispatch, page, expenseData]);
+  const handleRangePickerChange = (dates, dateStrings) => {
+    // dates[0] will be the start date and dates[1] will be the end date
+    setExpenseData((prevState) => ({
+      ...prevState,
+      start: dates[0]?.format("YYYY-MM-DD") || "",
+      end: dates[1]?.format("YYYY-MM-DD") || "",
+    }));
+    setSelectedDates(dates);
+  };
   return (
     <div className={styles.MainContainer}>
       <div className={styles.topContainer}>
         <p>Expanse Detail</p>
-       <Button>Add Expanse</Button>
+        <Button colorScheme="linkedin" onClick={() => navigate("/addExpanse")}>
+          {" "}
+          <FaPlus /> Add Expanse
+        </Button>
       </div>
       <div>
         <Tabs>
@@ -141,39 +155,12 @@ const Players = () => {
               />
             </div>
             <div className={styles.searchBar}>
-              <Select
-                placeholder="Year"
-                value={expenseData.year || []}
-                onChange={(value) => handleInputChange("year", value)}
-                options={[
-                  { label: "2022", value: "2022" },
-                  { label: "2023", value: "2023" },
-                  { label: "2024", value: "2024" },
-                  // Add more years as needed
-                ]}
+              <RangePicker
+                variant="borderless"
+                onChange={handleRangePickerChange}
               />
             </div>
-            <div className={styles.searchBar}>
-              <Select
-                placeholder="Month"
-                value={expenseData.month || []}
-                onChange={(value) => handleInputChange("month", value)}
-                options={[
-                  { label: "January", value: "01" },
-                  { label: "February", value: "02" },
-                  { label: "March", value: "03" },
-                  { label: "April", value: "04" },
-                  { label: "May", value: "05" },
-                  { label: "June", value: "06" },
-                  { label: "July", value: "07" },
-                  { label: "August", value: "08" },
-                  { label: "September", value: "09" },
-                  { label: "October", value: "10" },
-                  { label: "November", value: "11" },
-                  { label: "December", value: "12" },
-                ]}
-              />
-            </div>
+
             <div className={styles.searchBar}>
               <Input
                 placeholder="Amount"

@@ -3,6 +3,7 @@ import styles from "./style.module.css";
 import { MdDashboard } from "react-icons/md";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
+import { FaTasks } from "react-icons/fa";
 import { FiLogOut } from 'react-icons/fi';
 import { Dropdown } from 'antd';
 import { Avatar } from '@chakra-ui/react';
@@ -84,19 +85,19 @@ const Home = () => {
                             </div>
                         </Link>
 
-                        {/* <Link to="/tasks">
+                        <Link to="/tasks">
                             <div id={location === "/tasks" || location.startsWith("/editTasks/") ? styles.active : null}>
                                 <FaTasks className={styles.sideIcons} /> All Tasks
                             </div>
-                        </Link> */}
+                        </Link>
 
-                        <Link to="/addExpanse">
+                        {/* <Link to="/addExpanse">
                             <div id={location === "/addExpanse" ? styles.active : null}>
                                 <BsCurrencyDollar className={styles.sideIcons} /> Add Expanse
                             </div>
-                        </Link> 
+                        </Link>  */}
                         <Link to="/expense">
-                            <div id={location === "/expense" ? styles.active : null}>
+                            <div id={location === "/expense"||location === "/addExpanse" ? styles.active : null}>
                                 <BsCurrencyDollar className={styles.sideIcons} /> Expanse
                             </div>
                         </Link>

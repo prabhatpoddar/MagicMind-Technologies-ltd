@@ -65,10 +65,10 @@ export const {
 
 export default userSlice.reducer;
 
-export const fetchExpenseData = () => async (dispatch) => {
+export const fetchExpenseData = (data) => async (dispatch) => {
   try {
     dispatch(getExpenseDataRequest());
-    const response = await userRequest.get(`/api/expanse/getAll`);
+    const response = await userRequest.post(`/api/expanse/getAll`,data);
     dispatch(getExpenseDataSuccess(response.data));
     return Promise.resolve(response.data);
   } catch (error) {
