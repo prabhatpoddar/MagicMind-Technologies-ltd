@@ -40,12 +40,12 @@ const Router = () => {
   }, [location.pathname, token, navigate])
 
   const routes = [
-    { path: "/", element: <PrivateRoute> <Dashboard /></PrivateRoute> },
+    // { path: "/", element: <PrivateRoute> <Dashboard /></PrivateRoute> },
     { path: "/tasks", element: <PrivateRoute> <Tasks /></PrivateRoute> },
     { path: "/completed", element: <PrivateRoute> <Completed /></PrivateRoute> },
     { path: "/expense", element: <PrivateRoute> <Players /></PrivateRoute> },
     { path: "/addTasks", element: <PrivateRoute> <Addtasks /></PrivateRoute> },
-    { path: "/addExpanse", element: <PrivateRoute> <AddExpanse /></PrivateRoute> },
+    { path: "/", element: <PrivateRoute> <AddExpanse /></PrivateRoute> },
     { path: "/editTasks/:id", element: <PrivateRoute> <EditTasks /></PrivateRoute> },
 
     { path: "/login", element: <Login /> },
